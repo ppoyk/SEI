@@ -468,11 +468,9 @@ check_inputs <- function(inputs) {
     }
   }
 
-  # agg_scale
-  if (!is.null(inputs$agg_scale)) {
-    if (!(inputs$agg_scale %in% c("mins", "hours", "days", "weeks", "months", "quarters", "years"))) {
-      stop("agg_scale must be one of 'mins', 'hours', 'days', 'weeks', 'months', 'quarters', or 'years'")
-    }
+  # agg_scale and agg_period
+  if (!(sum(sapply(list(inputs$agg_scale, inputs$agg_period), is.null)) %in% c(0,2)))  
+      stop("Provide both 'agg_scale' and 'agg_period' to aggregate")
   }
 
   # rescale
