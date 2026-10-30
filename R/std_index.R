@@ -468,6 +468,13 @@ check_inputs <- function(inputs) {
     }
   }
 
+  # agg_scale
+  if (!is.null(inputs$agg_scale)) {
+    if (!(inputs$agg_scale %in% c("mins", "hours", "days", "weeks", "months", "quarters", "years"))) {
+      stop("agg_scale must be one of 'mins', 'hours', 'days', 'weeks', 'months', 'quarters', or 'years'")
+    }
+  }
+
   # rescale
   if (!is.null(inputs$rescale)) {
     if (!(inputs$rescale %in% c("days", "weeks", "months", "quarters", "years"))) {
